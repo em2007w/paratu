@@ -1,0 +1,118 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi San Valentin</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #f8d7da;
+        }
+        #question {
+            font-size: 20px;
+        }
+        #yes, #no {
+            font-size: 16px;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        #yes {
+            background-color: green;
+        }
+        #no {
+            background-color: red;
+            position: absolute;
+            transition: left 0.5s ease, top 0.5s ease;
+        }
+        #kiss-gif {
+            display: none;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 600px) {
+            #question {
+                font-size: 16px;
+            }
+            #yes, #no {
+                font-size: 14px;
+                padding: 5px 10px;
+            }
+            #no {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Propuesta San Valentin</h1>
+
+    <div id="question">FER ¿Quieresser mi san valentin?</div>
+    <button id="yes" onclick="showKissGif()">YES</button>
+    <button id="no" onclick="askAgain()">NO</button>
+    
+    <div id="kiss-gif">
+        <img src="https://media.tenor.com/Q9nqH-dv920AAAAi/hugs-hugging.gif" alt="Kissing Gif">
+    </div>
+    <div id="sad-gif" style="display: none;">
+        <img id="sad-gif-img" src="" alt="Sad Gif">
+    </div>
+    <script>
+        let questionCount = 1;
+        let hasShownSadGif = false;
+        const phrases = [
+            "¿Estás realmente seguro?",
+            "¡Prometo que será la mejor cita de todas! ¿Aún no?",
+            "¡Vamos, no me rompas el corazón! ¿Una última oportunidad?",
+            "Está bien, ya me detendré... ¡Es broma! ¿Estás seguro de que quieres perderte toda la diversión?",
+            "¡Me estás poniendo nerviosa! ¿Puedes decir que sí?",
+            "¡Imagínate los increíbles recuerdos que podríamos crear juntos! ¿Aún no?",
+            "¡Incluso compré un conjunto nuevo para la ocasión! ¿Serás mi San Valentín?",
+            "¡Mi corazón no puede soportar mucho más rechazo! ¡Por favor di que sí!",
+            "¡Hagámoslo oficial! ¿Serás mi cita de San Valentín?",
+            "¡Muy bien, este es el último! ¿Serás mi San Valentín?"
+        ];
+
+        function askAgain() {
+            const question = document.getElementById('question');
+            const yesButton = document.getElementById('yes');
+            const noButton = document.getElementById('no');
+
+            if (questionCount <= phrases.length) {
+                question.innerText = phrases[questionCount - 1];
+                questionCount++;
+                 if (!hasShownSadGif) {
+            document.getElementById('sad-gif').style.display = 'block';
+            document.getElementById('sad-gif-img').src = "https://media1.tenor.com/m/5iEotAx1LqkAAAAC/sad-guy-going-to-corner.gif";
+            hasShownSadGif = true; // Set the flag to true after showing the gif
+        }
+            } else {
+                question.innerText = "ESTAS MUY SEGUROOO?..., MMM VA"; // Change the text after 10 phrases
+                yesButton.style.fontSize = '28px';
+
+            document.getElementById('no').addEventListener('click', function() {
+            this.style.left = Math.random() * window.innerWidth + 'px';
+            this.style.top = Math.random() * window.innerHeight + 'px';
+        });
+            }
+        }
+
+        function showKissGif() {
+    const question = document.getElementById('question');
+    const yesButton = document.getElementById('yes');
+    const noButton = document.getElementById('no');
+    const sadGif = document.getElementById('sad-gif'); // Get the sad gif element
+
+    question.style.display = 'none';
+    yesButton.style.display = 'none';
+    noButton.style.display = 'none';
+    sadGif.style.display = 'none'; // Hide the sad gif
+    document.getElementById('kiss-gif').style.display = 'block';
+}
+
+        
+    </script>
+
+
+</body></html>
